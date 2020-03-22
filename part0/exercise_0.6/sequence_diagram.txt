@@ -1,0 +1,30 @@
+note over browser
+browser updates the notes array
+in the spa.js code with the new
+note
+end note
+
+note over browser
+browser calls the redrawNotes()
+method that re renders the notes
+as `li` html attribute
+end note
+
+note over browser
+browser sends the note as a json
+to the server
+end note
+
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+note over server
+server updates the notes data on the server
+end note
+
+server-->browser: 201 {message: "note created"}
+
+note over browser
+browser calls the redrawNotes()
+method that re renders the notes
+as `li` html attribute
+end note
