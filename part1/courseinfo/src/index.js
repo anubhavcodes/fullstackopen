@@ -5,8 +5,12 @@ const Header = (props) => (
   <h1>{props.course}</h1>
 )
 
-const Content = (props) => (
+const Part = (props) => (
   <p>{props.part} {props.exercises}</p>
+)
+
+const Content = (props) => (
+  <Part part={props.part} exercises={props.exercises} />
 )
 
 const Total = (props) => (
