@@ -10,16 +10,18 @@ const AverageStats = ({good, neutral, bad}) => {
 
 const PercentagePositive = ({good, total}) => (<div><p>positive {good / total * 100 }</p></div>)
 
+const Statistics = ({value, text}) => (<div><p>{text} {value}</p></div>)
+
 const DisplayStats = ({good, neutral, bad}) => {
   const total = good + neutral + bad
   if (total === 0) return (<div><p>No feedback given</p></div>)
   return (
     <div>
       <h2>statistics</h2>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {total}</p>
+      <Statistics text='good' value={good} />
+      <Statistics text='neutral' value={neutral} />
+      <Statistics text='bad' value={bad} />
+      <Statistics text='all' value={total} />
       <AverageStats good={good} neutral={neutral} bad={bad} />
       <PercentagePositive good={good} total={total} />
     </div>
