@@ -11,10 +11,10 @@ const getRandomInt = () => {
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
-  const [votes, setVotes] = useState({0:1, 1:1, 2:1, 3:1, 4:1, 5:1})
+  const [votes, setVotes] = useState(Array.apply(null, new Array(6)).map(Number.prototype.valueOf,0))
   const nextAnecdoteHandler = () => setSelected(getRandomInt())
   const voteHandler = () => {
-    const copy = {...votes}
+    const copy = [...votes]
     copy[selected] += 1
     setVotes(copy)
   }
