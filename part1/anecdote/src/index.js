@@ -11,12 +11,23 @@ const getRandomInt = () => {
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState({0:1, 1:1, 2:1, 3:1, 4:1, 5:1})
   const nextAnecdoteHandler = () => setSelected(getRandomInt())
+  const voteHandler = () => {
+    const copy = {...votes}
+    copy[selected] += 1
+    setVotes(copy)
+  }
 
   return (
     <div>
-      {props.anecdotes[selected]}
-      <p><button onClick={nextAnecdoteHandler}>next anecdote</button></p>
+      <p>{props.anecdotes[selected]}</p>
+      has {votes[selected]} votes
+      <p>
+        <button onClick={voteHandler}>vote</button>
+        <button onClick={nextAnecdoteHandler}>next anecdote</button>
+      </p>
+      
     </div>
   )
 }
