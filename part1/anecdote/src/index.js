@@ -7,6 +7,14 @@ const getRandomInt = () => {
   return Math.floor(Math.random() * (max - min)) + min
 }
 
+const ShowAnecdote = ({anecdoteId, votes}) => {
+  return (
+  <div>
+    <p>{anecdotes[anecdoteId]}</p> 
+    <p>has {votes} votes</p>
+  </div>
+  )
+}
 
 
 const App = (props) => {
@@ -18,15 +26,21 @@ const App = (props) => {
     copy[selected] += 1
     setVotes(copy)
   }
+  Array.prototype.max = function() {
+    return Math.max.apply(null, this);
+  };
+  const most_votes = votes.indexOf(votes.max())
 
   return (
     <div>
-      <p>{props.anecdotes[selected]}</p>
-      has {votes[selected]} votes
+      <h2>Anecdote of the day</h2>
+      <ShowAnecdote anecdoteId={selected} votes={votes[selected]} />
       <p>
         <button onClick={voteHandler}>vote</button>
         <button onClick={nextAnecdoteHandler}>next anecdote</button>
       </p>
+      <h2>Anecdote with most votes</h2>
+      <ShowAnecdote anecdoteId={most_votes} votes={votes.max()} />
       
     </div>
   )
