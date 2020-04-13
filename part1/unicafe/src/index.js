@@ -5,12 +5,12 @@ import ReactDom from 'react-dom'
 const AverageStats = ({good, neutral, bad}) => {
   let avg
   const total = good + neutral + bad
-  return (<div><p>average {(good - bad) / total}</p></div>)
+  return (<Statistics text="average" value={(good-bad)/total} />)
 }
 
-const PercentagePositive = ({good, total}) => (<div><p>positive {good / total * 100 }</p></div>)
+const PercentagePositive = ({good, total}) => (<Statistics text='positive' value={good / total * 100 } />)
 
-const Statistics = ({value, text}) => (<div><p>{text} {value}</p></div>)
+const Statistics = ({value, text}) => (<tr><td>{text}</td> <td>{value}</td></tr>)
 
 const DisplayStats = ({good, neutral, bad}) => {
   const total = good + neutral + bad
@@ -18,12 +18,14 @@ const DisplayStats = ({good, neutral, bad}) => {
   return (
     <div>
       <h2>statistics</h2>
-      <Statistics text='good' value={good} />
-      <Statistics text='neutral' value={neutral} />
-      <Statistics text='bad' value={bad} />
-      <Statistics text='all' value={total} />
-      <AverageStats good={good} neutral={neutral} bad={bad} />
-      <PercentagePositive good={good} total={total} />
+      <table>
+        <Statistics text='good' value={good} />
+        <Statistics text='neutral' value={neutral} />
+        <Statistics text='bad' value={bad} />
+        <Statistics text='all' value={total} />
+        <AverageStats good={good} neutral={neutral} bad={bad} />
+        <PercentagePositive good={good} total={total} />
+      </table>
     </div>
   )
 }
